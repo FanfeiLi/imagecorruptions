@@ -12,7 +12,7 @@ corruption_dict = {corr_func.__name__: corr_func for corr_func in
                    corruption_tuple}
 
 
-def corrupt(image, severity=1, corruption_name=None, corruption_number=-1):
+def corrupt(image, severity=1, corruption_name=None, corruption_number=-1,min_size_check=True):
     """This function returns a corrupted version of the given image.
     
     Args:
@@ -42,12 +42,12 @@ def corrupt(image, severity=1, corruption_name=None, corruption_number=-1):
         raise AttributeError('Expecting image.shape to be either (height x width) or (height x width x channels)')
     if image.ndim == 2:
         image = np.stack((image,)*3, axis=-1)
-    
-    height, width, channels = image.shape
-    
-    if (height < 32 or width < 32):
-        raise AttributeError('Image width and height must be at least 32 pixels')
-    
+    if min_size_check:
+        height, width, channels = image.shape
+        
+        if (height < 32 or width < 32):
+            raise AttributeError('Image width and height must be at least 32 pixels')
+        
     if not (channels in [1,3]):
         raise AttributeError('Expecting image to have either 1 or 3 channels (last dimension)')
         
