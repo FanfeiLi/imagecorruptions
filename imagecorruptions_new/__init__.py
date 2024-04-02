@@ -42,8 +42,8 @@ def corrupt_new(image, severity=1, corruption_name=None, corruption_number=-1,mi
         raise AttributeError('Expecting image.shape to be either (height x width) or (height x width x channels)')
     if image.ndim == 2:
         image = np.stack((image,)*3, axis=-1)
-    if min_size_check:
         height, width, channels = image.shape
+    if min_size_check:
         
         if (height < 32 or width < 32):
             raise AttributeError('Image width and height must be at least 32 pixels')
