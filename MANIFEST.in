@@ -1,2 +1,4 @@
 include imagecorruptions_new/frost/*.png
 include imagecorruptions_new/frost/*.jpg
+include imagecorruptions_intensified/frost/*.png
+include imagecorruptions_intensified/frost/*.jpg
