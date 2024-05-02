@@ -323,7 +323,6 @@ def frost(x, severity=1):
                 resource_filename(__name__, './frost/frost4.jpg'),
                 resource_filename(__name__, './frost/frost5.jpg'),
                 resource_filename(__name__, './frost/frost6.jpg')][idx]
-    print(filename)
     frost = cv2.imread(filename)
     frost_shape = frost.shape
     x_shape = np.array(x).shape
