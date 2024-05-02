@@ -184,7 +184,7 @@ def shot_noise(x, severity=1):
 
 
 def impulse_noise(x, severity=1):
-    c = [.17, .27, .37, 0.57, 0.97][severity - 1]
+    c = [.17, .27, .37, 0.57, 0.7][severity - 1]
 
     x = sk.util.random_noise(np.array(x) / 255., mode='s&p', amount=c)
     return np.clip(x, 0, 1) * 255
@@ -289,7 +289,7 @@ def next_power_of_2(x):
 
 
 def fog(x, severity=1):
-    c = [(2.0, 2), (3.0, 1.8), (4.0, 1.4), (5.0, 1.2), (6.0, 1.0)][severity - 1]
+    c = [(2.0, 2), (3.0, 1.8), (4.0, 1.4), (6.0, 1.3), (9.0, 1.3)][severity - 1]
 
     shape = np.array(x).shape
     max_side = np.max(shape)
@@ -313,8 +313,8 @@ def frost(x, severity=1):
     c = [(1.2, 0.5),
         (1.4, 0.6),
         (1.6, 0.7),
-        (2, 0.8),
-        (2.6, 1.2)][severity - 1]
+        (1.7, 1.2),
+        (1.8, 1.5)][severity - 1]
 
     idx = np.random.randint(5)
     filename = [resource_filename(__name__, './frost/frost1.png'),
@@ -370,8 +370,8 @@ def snow(x, severity=1):
     c = [(0.2, 0.3, 2, 0.5, 12, 4, 0.7),
         (0.55, 0.3, 4.5, 0.85, 12, 8, 0.65),
         (0.55, 0.3, 2.5, 0.75, 12, 12, 0.65),
-        (0.55, 0.4, 3, 0.65, 12, 10, 0.6),
-        (0.65, 0.4, 5, 0.65, 15, 10, 0.55)][severity - 1]
+        (0.55, 0.4, 3, 0.65, 10, 10, 0.65),
+        (0.65, 0.4, 4, 0.7, 10, 12, 0.55)][severity - 1]
 
     x = np.array(x, dtype=np.float32) / 255.
     snow_layer = np.random.normal(size=x.shape[:2], loc=c[0],
